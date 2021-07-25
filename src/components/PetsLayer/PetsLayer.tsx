@@ -26,6 +26,7 @@ const PetsLayer: FC<{}> = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event>();
   const [closeEvent] = useCloseEvent();
 
+
   const {data: petTypesData} = usePetTypesQuery();
   const petTypes: SelectOption[] = petTypesData
     ? petTypesData.allPetTypes.map(({id, description: text}) => ({
@@ -53,7 +54,8 @@ const PetsLayer: FC<{}> = () => {
         icon: DroneIcon,
       }))
     : [];
-
+  
+  petTypes.push({id:"5", text: "none"})
   if (selectedEvent) {
     mapItems.push({
       id: -1,
@@ -69,12 +71,19 @@ const PetsLayer: FC<{}> = () => {
           options={petTypes}
           onSubmit={(selectedOption: SelectOption | undefined) => {
             if (selectedOption) {
-              closeEvent({
-                variables: {id: selectedEvent.id, petId: selectedOption.id},
-              });
+                if(selectedOption.id == 5){
+                  closeEvent({
+                    variables: {id: selectedEvent.id},
+                  });}
+                
+              else{
+                closeEvent({
+                  variables: {id: selectedEvent.id, petId: selectedOption.id},
+                });
+  
+              }
               setSelectedEvent(undefined);
-            }
-          }}
+          }}}
         />
       ),
     });
@@ -89,7 +98,7 @@ const PetsLayer: FC<{}> = () => {
     }
   };
 
-  return (
+  return ( 
     <AppLayout
       map={
         <>
@@ -103,7 +112,7 @@ const PetsLayer: FC<{}> = () => {
       }
       drawer={
         <DrawerContentLayout
-          listHeader="אירועים פתוחים"
+          listHeader={"אירועים פתוחים" + events.length}
           listElements={
             <>
               {events.map((event, index) => (
@@ -115,8 +124,6 @@ const PetsLayer: FC<{}> = () => {
                       );
                       setSelectedEvent(undefined);
                     }}
-                  
-
                     onClassifyClick={onClassifyClick}
                   />
                   {index + 1 !== events.length && <hr />}

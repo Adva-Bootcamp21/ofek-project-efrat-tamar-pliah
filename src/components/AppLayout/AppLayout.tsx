@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import {makeStyles, createStyles} from '@material-ui/core/styles/';
+import Footer from '../footer/footer';
 
 const useStyles = makeStyles(
   createStyles({
@@ -39,6 +40,7 @@ const AppLayout: FC<AppLayoutProps> = ({map, drawer}) => {
         classes={{paper: drawerStyles}}>
         {drawer}
       </Drawer>
+      <Footer/>
     </>
   );
 };

@@ -24,7 +24,6 @@ const CLOSE_EVENT = gql`mutation CloseEvent($id: Int!, $petTypeCode: Int){
       code,
       description
     }
-    
   }
 }`;
 

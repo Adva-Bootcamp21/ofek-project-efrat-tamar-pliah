@@ -56,7 +56,7 @@ const MapGrid: FC<MapGridProps> = props => {
     mapItems = [],
     onMapClick = () => {},
     onMapItemClick = () => {},
-    mapSrc = demoImageBackground
+    // mapSrc = demoImageBackground
   } = props;
   const {root} = useStyles(props);
 
