@@ -7,8 +7,8 @@ export interface Variables {
 }
 
 //Todo - add the mutation here
-const CLOSE_EVENT = gql`mutation CloseEvent($eventId: Int, $petTypeCode: Int){
-	closeEvent(eventId: $eventId, petTypeCode: $petTypeCode){
+const CLOSE_EVENT = gql`mutation CloseEvent($id: Int!, $petTypeCode: Int){
+	closeEvent(eventId: $id, petTypeCode: $petTypeCode){
     id,
     petType{
       id,

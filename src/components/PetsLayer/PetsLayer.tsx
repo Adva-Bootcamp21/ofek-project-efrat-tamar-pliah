@@ -14,7 +14,6 @@ import {
 } from '../../graphql/queries/quadcopters';
 import { usePetTypesQuery } from '../../graphql/queries/pet-types';
 import DroneIcon from "../DroneIcon/DroneIcon";
-import Footer from "../footer/footer"
 import AdoptionInfo from '../AdoptionInfo/AdoptionInfo'
 import {MapForPets} from '../MapForPets/MapForPets';
 import Typography from '@material-ui/core/Typography';
@@ -91,7 +90,6 @@ const PetsLayer: FC<{}> = () => {
   };
 
   return (
-    // {/* fdsf */}  
     <AppLayout
       map={
         <>
@@ -113,7 +111,8 @@ const PetsLayer: FC<{}> = () => {
                   <EventItem
                     event={event}
                     onTrashClick={id => {
-                      closeEvent({variables: {id}});
+                      closeEvent({variables: {id}}).then(res =>console.log(res)
+                      );
                       setSelectedEvent(undefined);
                     }}
                   
